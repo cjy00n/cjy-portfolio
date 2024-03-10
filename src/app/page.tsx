@@ -1,49 +1,20 @@
 "use client";
 
-import { Project } from "@/types/model";
-import { useEffect, useState } from "react";
+import Awards from "./_components/Awards";
+import Contact from "./_components/Contact";
+import MyInfo from "./_components/MyInfo";
+import Project from "./_components/Project";
+import Study from "./_components/Study";
 
 const Home = () => {
-  const [project, setProject] = useState<Project[]>();
-
-  const fetchProject = async () => {
-    try {
-      const response = await fetch("/api/temp", {
-        headers: {
-          Accept: "application/json",
-          method: "GET",
-        },
-      });
-      if (response) {
-        const data = await response.json();
-        setProject(data);
-      }
-    } catch {}
-  };
-
-  useEffect(() => {
-    fetchProject();
-  }, []);
-
   return (
-    <div>
-      {project &&
-        project.map((item) => (
-          <div key={item.title} className="p-2">
-            <p>{item.title}</p>
-            <p>{item.subTitle}</p>
-            <p>
-              {item.period_start} ~ {item.period_end}
-            </p>
-            <p>
-              {item.stacks.map((stack) => (
-                <span key={item + stack} className="mr-2 bg-orange-300">
-                  {stack}
-                </span>
-              ))}
-            </p>
-          </div>
-        ))}
+    <div className="h-dvh overflow-x-hidden">
+      <header className="fixed top-0 w-full h-10 bg-red-300 z-10">헤더</header>
+      <MyInfo />
+      <Study />
+      <Awards />
+      <Project />
+      <Contact />
     </div>
   );
 };
