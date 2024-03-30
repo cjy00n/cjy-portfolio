@@ -1,5 +1,7 @@
+import Layout from "./Layout";
+
 const Contact = () => {
-  return <div className="h-dvh bg-back-300">연락처</div>;
+  return <Layout>연락처</Layout>;
 };
 
 export default Contact;
