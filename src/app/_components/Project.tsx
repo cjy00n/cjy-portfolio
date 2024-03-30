@@ -24,7 +24,7 @@ export default function Project() {
   }, []);
 
   return (
-    <div className="sticky bg-green-950 min-dvh top-1/6">
+    <div className="bg-back-200 min-dvh">
       {project &&
         project.map((item) => <ProjectItem item={item} key={item.title} />)}
     </div>
