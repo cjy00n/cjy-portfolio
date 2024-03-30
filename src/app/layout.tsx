@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Noto_Sans } from "next/font/google";
+import { Nanum_Gothic } from "next/font/google";
 import "./globals.css";
 
-const notoSans = Noto_Sans({ subsets: ["latin"], weight: ["400"] });
+const nanumGothic = Nanum_Gothic({ subsets: ["latin"], weight: ["400"] });
 
 export const metadata: Metadata = {
   title: "최정윤 | 프론트엔드 개발자",
@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={notoSans.className}>{children}</body>
+      <body className={nanumGothic.className}>{children}</body>
     </html>
   );
 }
