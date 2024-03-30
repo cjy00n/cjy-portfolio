@@ -26,11 +26,10 @@ const Home = () => {
   const contactRef = useRef<HTMLDivElement>(null);
 
   const scrollToSection = (ref: React.RefObject<HTMLDivElement>) => {
-    const headerHeight = 40;
     if (ref.current) {
       const elementHeight = ref.current.offsetTop;
       window.scrollTo({
-        top: elementHeight - headerHeight,
+        top: elementHeight,
         behavior: "smooth",
       });
     }
