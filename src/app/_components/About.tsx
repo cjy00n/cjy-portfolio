@@ -4,7 +4,7 @@ import Image from "next/image";
 const About = () => {
   return (
     <Layout backGround="default">
-      <div className="flex">
+      <div className="flex text-lg">
         <Image
           src={"/profile.PNG"}
           alt={"profile-image"}

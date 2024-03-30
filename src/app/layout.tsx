@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Nanum_Gothic } from "next/font/google";
 import "./globals.css";
 
-const nanumGothic = Nanum_Gothic({ subsets: ["latin"], weight: ["400"] });
+const nanumGothic = Nanum_Gothic({ subsets: ["latin"], weight: ["700"] });
 
 export const metadata: Metadata = {
   title: "최정윤 | 프론트엔드 개발자",
