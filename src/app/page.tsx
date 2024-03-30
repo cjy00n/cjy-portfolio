@@ -1,19 +1,27 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { IoPersonCircle, IoMail, IoLaptopOutline } from "react-icons/io5";
+import {
+  IoPersonCircle,
+  IoHome,
+  IoMail,
+  IoConstructSharp,
+  IoAppsSharp,
+} from "react-icons/io5";
+import { NavItem, NavItemValue } from "./_types/NavItem";
 import Contact from "./_components/Contact";
 import About from "./_components/About";
 import Project from "./_components/Project";
 import Header from "./_components/Header";
 import Main from "./_components/Main";
-import { NavItem, NavItemValue } from "./_types/NavItem";
+import Skill from "./_components/Skill";
 
 const Home = () => {
   const [activeNavItem, setActiveNavItem] = useState<NavItemValue>("main");
 
   const mainRef = useRef<HTMLDivElement>(null);
   const aboutRef = useRef<HTMLDivElement>(null);
+  const skillRef = useRef<HTMLDivElement>(null);
   const projectRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
 
@@ -33,6 +41,7 @@ const Home = () => {
       const scrollPosition = window.scrollY + window.innerHeight / 2; // 뷰포트 중앙 기준으로 현재 스크롤
 
       const aboutPositioin = aboutRef.current?.offsetTop || 0;
+      const skillPosition = skillRef.current?.offsetTop || 0;
       const projectPosition = projectRef.current?.offsetTop || 0;
       const contactPosition = contactRef.current?.offsetTop || 0;
 
@@ -40,9 +49,14 @@ const Home = () => {
         setActiveNavItem("main");
       } else if (
         scrollPosition >= aboutPositioin &&
-        scrollPosition < projectPosition
+        scrollPosition < skillPosition
       ) {
         setActiveNavItem("about");
+      } else if (
+        scrollPosition >= skillPosition &&
+        scrollPosition < projectPosition
+      ) {
+        setActiveNavItem("skill");
       } else if (
         scrollPosition >= projectPosition &&
         scrollPosition < contactPosition
@@ -62,7 +76,7 @@ const Home = () => {
 
   const navItems: NavItem[] = [
     {
-      name: "CHOI JUNG YOON",
+      name: "JUNG YOON",
       value: "main",
       onClick: () => {
         window.scrollTo({
@@ -70,7 +84,7 @@ const Home = () => {
           behavior: "smooth",
         });
       },
-      icon: <IoPersonCircle />,
+      icon: <IoHome />,
     },
     {
       name: "ABOUT",
@@ -79,10 +93,16 @@ const Home = () => {
       icon: <IoPersonCircle />,
     },
     {
+      name: "SKILL",
+      value: "skill",
+      onClick: () => scrollToSection(skillRef),
+      icon: <IoConstructSharp />,
+    },
+    {
       name: "PROJECT",
       value: "project",
       onClick: () => scrollToSection(projectRef),
-      icon: <IoLaptopOutline />,
+      icon: <IoAppsSharp />,
     },
     {
       name: "CONTACT",
@@ -93,20 +113,25 @@ const Home = () => {
   ];
 
   return (
-    <div>
+    <div className="flex">
+      <section>
+        <section ref={mainRef}>
+          <Main />
+        </section>
+        <section ref={aboutRef}>
+          <About />
+        </section>
+        <section ref={skillRef}>
+          <Skill />
+        </section>
+        <section ref={projectRef}>
+          <Project />
+        </section>
+        <section ref={contactRef}>
+          <Contact />
+        </section>
+      </section>
       <Header navItems={navItems} activeNavItem={activeNavItem} />
-      <section ref={mainRef}>
-        <Main />
-      </section>
-      <section ref={aboutRef}>
-        <About />
-      </section>
-      <section ref={projectRef}>
-        <Project />
-      </section>
-      <section ref={contactRef}>
-        <Contact />
-      </section>
     </div>
   );
 };
